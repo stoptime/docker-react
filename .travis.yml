@@ -1,0 +1,11 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t stoptime9/docker-react -f Dockerfile.dev .
+
+# CI needed for how the Jest library works with Create React App
+script:
+  - docker run -e CI=true stoptime9/docker-react yarn test
